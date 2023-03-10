@@ -2,38 +2,40 @@
 #include <stdlib.h>
 #include <string>
 
-#define TABLESIZE 14
+#define N 14
 
 void initBoard();
 void colorOutput(int);
 void displayBoard();
 int userInput();
-void updateBoard(int);
+void updateBoard(int, int, int, int);
+bool isBoardFilled();
 
-int board[TABLESIZE][TABLESIZE];
+int board[N][N];
 
 int main()
 {
     srand(time(NULL));
-
     initBoard();
-    displayBoard();
 
     int fills = 0;
     int chosenNumber;
     // Core game loop
     while (fills <= 25)
     {
+        displayBoard();
         chosenNumber = userInput();
-        updateBoard(chosenNumber);
+        updateBoard(board[0][0], chosenNumber, 0, 0);
+        system("clear");
+        fills++;
     }
 }
 
 void initBoard()
 {
-    for (int i = 0; i < TABLESIZE; i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < TABLESIZE; j++)
+        for (int j = 0; j < N; j++)
         {
             int number = rand() % 6 + 1;
             board[i][j] = number;
@@ -41,11 +43,35 @@ void initBoard()
     }
 }
 
+void updateBoard(int oldColor, int newColor, int row, int col)
+{
+    // Check if the oldColor is same as the newColor
+    if (oldColor == newColor)
+        return;
+
+    // Check if the row and column are within bounds of the board
+    if (row < 0 || row >= N || col < 0 || col >= N)
+        return;
+
+    // Check if the current cell has the oldColor
+    if (board[row][col] != oldColor)
+        return;
+
+    // Update the current cell with the newColor
+    board[row][col] = newColor;
+
+    // Update the adjacent cells with the newColor
+    updateBoard(oldColor, newColor, row - 1, col);
+    updateBoard(oldColor, newColor, row + 1, col);
+    updateBoard(oldColor, newColor, row, col - 1);
+    updateBoard(oldColor, newColor, row, col + 1);
+}
+
 void displayBoard()
 {
-    for (int i = 0; i < TABLESIZE; i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < TABLESIZE; j++)
+        for (int j = 0; j < N; j++)
             colorOutput(board[i][j]);
 
         std::cout << std::endl;
