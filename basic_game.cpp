@@ -125,9 +125,9 @@ void updateBoard(int oldColor, int newColor, int row, int col)
 bool isBoardFilled()
 {
     int color = board[0][0];
-    for (int i = 1; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 1; j < N; j++)
+        for (int j = 0; j < N; j++)
         {
             if (board[i][j] != color)
                 return false;
