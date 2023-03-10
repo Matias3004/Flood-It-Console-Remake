@@ -37,7 +37,6 @@ void initBoard()
         {
             int number = rand() % 6 + 1;
             board[i][j] = number;
-            // colorOutput(number);
         }
     }
 }
