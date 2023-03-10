@@ -8,6 +8,7 @@ void initBoard();
 void colorOutput(int);
 void displayBoard();
 int userInput();
+void updateBoard(int);
 
 int board[TABLESIZE][TABLESIZE];
 
@@ -18,10 +19,13 @@ int main()
     initBoard();
     displayBoard();
 
+    int fills = 0;
+    int chosenNumber;
     // Core game loop
-    while (true)
+    while (fills <= 25)
     {
-
+        chosenNumber = userInput();
+        updateBoard(chosenNumber);
     }
 }
 
@@ -51,12 +55,17 @@ void displayBoard()
 
 int userInput()
 {
+    int input = 99;
     std::cout << "Wybierz kolor:" << std::endl;
     printf("1 - \x1b[34;44m  \x1b[0m \n");
     printf("2 - \x1b[31;41m  \x1b[0m \n");
     printf("3 - \x1b[32;42m  \x1b[0m \n");
     printf("4 - \x1b[33;43m  \x1b[0m \n");
     printf("5 - \x1b[35;45m  \x1b[0m \n");
+    printf("6 - \x1b[36;46m  \x1b[0m \n");
+
+    std::cout << "Your choice: ";
+    std::cin >> input;
 
     return input;
 }
