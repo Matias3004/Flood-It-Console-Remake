@@ -28,9 +28,20 @@ int main()
         chosenNumber = userInput();
         updateBoard(board[0][0], chosenNumber, 0, 0);
 
+        if (isBoardFilled())
+        {
+            std::cout << "You won!" << std::endl;
+
+            return 0;
+        }
+
         system("clear");
         fills++;
     }
+
+    std::cout << "You lost!" << std::endl;
+
+    return 0;
 }
 
 void initBoard()
