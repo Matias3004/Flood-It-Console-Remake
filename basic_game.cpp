@@ -69,6 +69,21 @@ void updateBoard(int oldColor, int newColor, int row, int col)
     updateBoard(oldColor, newColor, row, col + 1);
 }
 
+bool isBoardFilled()
+{
+    int color = board[0][0];
+    for (int i = 1; i < N; i++)
+    {
+        for (int j = 1; j < N; j++)
+        {
+            if (board[i][j] != color)
+                return false;
+        }
+    }
+
+    return true;
+}
+
 void displayBoard()
 {
     for (int i = 0; i < N; i++)
