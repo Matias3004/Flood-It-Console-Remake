@@ -21,11 +21,13 @@ int main()
     int fills = 0;
     int chosenNumber;
     // Core game loop
-    while (fills <= 25)
+    while (fills < 25)
     {
+        std::cout << "Fills: " << fills << "/25\n";
         displayBoard();
         chosenNumber = userInput();
         updateBoard(board[0][0], chosenNumber, 0, 0);
+
         system("clear");
         fills++;
     }
