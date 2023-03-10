@@ -15,6 +15,8 @@ int board[N][N];
 
 int main()
 {
+    system("clear");
+
     srand(time(NULL));
     initBoard();
 
@@ -23,25 +25,65 @@ int main()
     // Core game loop
     while (fills < 25)
     {
-        std::cout << "Fills: " << fills << "/25\n";
-        displayBoard();
-        chosenNumber = userInput();
+        // Checks if the chosen color is the same as the top-left color
+        while (true)
+        {
+            std::cout << "Fills: " << fills << "/25\n";
+            displayBoard();
+            chosenNumber = userInput();
+
+            system("clear");
+            
+            if (chosenNumber != board[0][0])
+                break;
+        }
+        
         updateBoard(board[0][0], chosenNumber, 0, 0);
 
         if (isBoardFilled())
         {
+            std::cout << "Fills: " << fills << "/25\n";
+            displayBoard();
             std::cout << "You won!" << std::endl;
+            std::cout << "1 - New Game\n2 - Exit" << std::endl;
+            std::cout << "Choice: ";
+            std::cin >> chosenNumber;
 
-            return 0;
+            switch (chosenNumber)
+            {
+            case 1:
+                main();
+
+                break;
+            case 2:
+                return 0;
+            default:
+                return 0;
+            }
         }
 
         system("clear");
         fills++;
     }
 
+    std::cout << "Fills: " << fills << "/25\n";
+    displayBoard();
     std::cout << "You lost!" << std::endl;
+    std::cout << "1 - New Game\n2 - Exit" << std::endl;
+    std::cout << "Choice: ";
+    std::cin >> chosenNumber;
 
-    return 0;
+    switch (chosenNumber)
+    {
+        case 1:
+            main();
+
+            break;
+        case 2:
+            return 0;
+        default:
+            return 0;
+    }
 }
 
 void initBoard()
