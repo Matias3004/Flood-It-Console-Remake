@@ -3,6 +3,7 @@
 #include <string>
 
 #define N 14
+#define ALLOWED_MOVES 25
 
 void initBoard();
 void colorOutput(int);
@@ -23,12 +24,12 @@ int main()
     int fills = 0;
     int chosenNumber;
     // Core game loop
-    while (fills < 25)
+    while (fills < ALLOWED_MOVES)
     {
         // Checks if the chosen color is the same as the top-left color
         while (true)
         {
-            std::cout << "Fills: " << fills << "/25\n";
+            std::cout << "Fills: " << fills << "/" << ALLOWED_MOVES << "\n";
             displayBoard();
             chosenNumber = userInput();
 
