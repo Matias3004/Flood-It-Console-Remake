@@ -12,11 +12,13 @@ int userInput();
 void updateBoard(int, int, int, int);
 bool isBoardFilled();
 
+void clearScreen();
+
 int board[N][N];
 
 int main()
 {
-    system("clear");
+    clearScreen();
 
     srand(time(NULL));
     initBoard();
@@ -33,8 +35,8 @@ int main()
             displayBoard();
             chosenNumber = userInput();
 
-            system("clear");
-            
+            clearScreen();
+
             if (chosenNumber != board[0][0])
                 break;
         }
@@ -63,7 +65,7 @@ int main()
             }
         }
 
-        system("clear");
+        clearScreen();
         fills++;
     }
 
@@ -199,4 +201,13 @@ void colorOutput(int number)
 
         break;
     }
+}
+
+void clearScreen()
+{
+#if _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
