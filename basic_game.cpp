@@ -12,6 +12,7 @@ int userInput();
 void updateBoard(int, int, int, int);
 bool isBoardFilled();
 
+void menu();
 void clearScreen();
 
 int board[N][N];
@@ -48,21 +49,7 @@ int main()
             std::cout << "Fills: " << fills << "/25\n";
             displayBoard();
             std::cout << "You won!" << std::endl;
-            std::cout << "1 - New Game\n2 - Exit" << std::endl;
-            std::cout << "Choice: ";
-            std::cin >> chosenNumber;
-
-            switch (chosenNumber)
-            {
-            case 1:
-                main();
-
-                break;
-            case 2:
-                return 0;
-            default:
-                return 0;
-            }
+            menu();
         }
 
         clearScreen();
@@ -72,20 +59,30 @@ int main()
     std::cout << "Fills: " << fills << "/25\n";
     displayBoard();
     std::cout << "You lost!" << std::endl;
+    menu();
+}
+
+void menu()
+{
+    int choice = 99;
     std::cout << "1 - New Game\n2 - Exit" << std::endl;
     std::cout << "Choice: ";
-    std::cin >> chosenNumber;
+    std::cin >> choice;
 
-    switch (chosenNumber)
+    switch (choice)
     {
-        case 1:
-            main();
+    case 1:
+        main();
 
-            break;
-        case 2:
-            return 0;
-        default:
-            return 0;
+        break;
+    case 2:
+        clearScreen();
+
+        return;
+    default:
+        clearScreen();
+
+        return;
     }
 }
 
